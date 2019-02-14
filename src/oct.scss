@@ -1,0 +1,41 @@
+$oct-actionbar-color: #FFF !default;
+$oct-border-color: rgba(10, 10, 10, 0.8) !default;
+$oct-border-style: solid !default;
+$oct-border-width: 1px !default;
+$oct-button-height: 30px !default;
+$oct-button-selected-color: #F0F0F0 !default;
+$oct-button-width: 30px !default;
+$oct-content-height: 300px !default;
+$oct-content-padding: 10px !default;
+
+.oct {
+  border: $oct-border-width $oct-border-style $oct-border-color;
+  box-sizing: border-box;
+}
+
+.oct-content {
+  box-sizing: border-box;
+  height: $oct-content-height;
+  outline: 0;
+  overflow-y: auto;
+  padding: $oct-content-padding;
+}
+
+.oct-actionbar {
+  background-color: $oct-actionbar-color;
+  border-bottom: $oct-border-width $oct-border-style $oct-border-color;
+}
+
+.oct-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  height: $oct-button-height;
+  outline: 0;
+  width: $oct-button-width;
+  vertical-align: bottom;
+}
+
+.oct-button-selected {
+  background-color: $oct-button-selected-color;
+}
