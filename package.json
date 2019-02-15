@@ -1,10 +1,10 @@
 {
-  "name": "octane",
-  "version": "1.0.0",
+  "name": "octane-editor",
+  "version": "1.1.0",
   "description": "a mini rich text editor",
-  "author": "luo",
+  "author": "luoshilu <https://github.com/luoshilu>",
   "license": "ISC",
-  "main": "index.js",
+  "main": "./dist/oct.min.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint.js ./"
   },
