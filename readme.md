@@ -1,6 +1,6 @@
 ## octane
 
-octane.js是一款简洁，轻量，零依赖的富文本编辑器，可用于pc端和h5移动端。
+octane.js是一款简洁，轻量，零依赖的富文本编辑器，可用于pc端。
 
 > octane的由来
 > octane 中文名为 辛烷，引用于 Rocket League 游戏里一辆车的简称。
