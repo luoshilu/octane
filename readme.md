@@ -7,7 +7,7 @@ octane.js是一款简洁，轻量，零依赖的富文本编辑器，可用于pc
 
 ![demo](https://asyncc.com/uploads/2019/02/a92144d61b53ad6e5041c2f4f81501e4.gif)
 
-[演示地址](https://asyncc.com/static/home/demo_html/octane_editor.html)
+[演示地址](http://htmlpreview.github.io/?https://github.com/luoshilu/octane/blob/master/index.html)
 
 ## use
 
