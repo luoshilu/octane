@@ -23,8 +23,9 @@ var _exec = function _exec(command) {
 };
 
 var actionbar = {
-    'b': {
+    'bold': {
         icon: '<b>B</b>',
+        title: 'bold',
         stat: function stat() {
             return queryCommendState('bold');
         },
@@ -32,8 +33,9 @@ var actionbar = {
             return _exec('bold');
         }
     },
-    'i': {
+    'italic': {
         icon: '<i>I</i>',
+        title: 'italic',
         stat: function stat() {
             return queryCommendState('italic');
         },
@@ -41,8 +43,9 @@ var actionbar = {
             return _exec('italic');
         }
     },
-    'u': {
+    'underline': {
         icon: '<u>U</u>',
+        title: 'underline',
         stat: function stat() {
             return queryCommendState('underline');
         },
@@ -50,8 +53,9 @@ var actionbar = {
             return _exec('underline');
         }
     },
-    's': {
+    'strike': {
         icon: '<s>S</s>',
+        title: 'strike',
         stat: function stat() {
             return queryCommendState('strikeThrough');
         },
@@ -59,16 +63,85 @@ var actionbar = {
             return _exec('strikeThrough');
         }
     },
+    'left': {
+        icon: '&#x21e4;',
+        title: 'left',
+        stat: function stat() {
+            return queryCommendState('justifyLeft');
+        },
+        exec: function exec() {
+            return _exec('justifyLeft');
+        }
+    },
+    'center': {
+        icon: '&#120675;',
+        title: 'center',
+        stat: function stat() {
+            return queryCommendState('justifyCenter');
+        },
+        exec: function exec() {
+            return _exec('justifyCenter');
+        }
+    },
+    'right': {
+        icon: '&#x21e5;',
+        title: 'right',
+        stat: function stat() {
+            return queryCommendState('justifyRight');
+        },
+        exec: function exec() {
+            return _exec('justifyRight');
+        }
+    },
     'h1': {
         icon: '<b>H<sub>1</sub></b>',
+        title: 'h1',
         exec: function exec() {
             return _exec('formatBlock', '<h1>');
         }
     },
     'h2': {
         icon: '<b>H<sub>2</sub></b>',
+        title: 'h2',
         exec: function exec() {
             return _exec('formatBlock', '<h2>');
+        }
+    },
+    'olist': {
+        icon: '&#35;',
+        title: 'olist',
+        exec: function exec() {
+            return _exec('insertOrderedList');
+        }
+    },
+    'ulist': {
+        icon: '&#8226;',
+        title: 'ulist',
+        exec: function exec() {
+            return _exec('insertUnorderedList');
+        }
+    },
+    'code': {
+        icon: '&lt;/&gt;',
+        title: 'code',
+        exec: function exec() {
+            return _exec('formatBlock', '<pre>');
+        }
+    },
+    'link': {
+        icon: '&#128279;',
+        title: 'link',
+        exec: function exec() {
+            var url = window.prompt('Enter the link URL');
+            if (url) _exec('createLink', url);
+        }
+    },
+    'image': {
+        icon: '&#128247;',
+        title: 'image',
+        exec: function exec() {
+            var url = window.prompt('Enter the image URL');
+            if (url) _exec('insertImage', url);
         }
     }
 };
@@ -96,6 +169,7 @@ var init = function init(arg) {
             var button = document.createElement('button');
             button.classList.add(defaultClasses.button);
             button.innerHTML = actionbarType.icon;
+            button.title = actionbarType.title;
             button.onclick = function () {
                 return actionbarType.exec() && content.focus();
             };
