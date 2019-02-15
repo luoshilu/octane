@@ -6,6 +6,10 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+var queryCommendState = function queryCommendState(command) {
+    return document.queryCommandState(command);
+};
+
 var defaultClasses = {
     actionbar: 'oct-actionbar',
     button: 'oct-button',
@@ -21,24 +25,36 @@ var _exec = function _exec(command) {
 var actionbar = {
     'b': {
         icon: '<b>B</b>',
+        stat: function stat() {
+            return queryCommendState('bold');
+        },
         exec: function exec() {
             return _exec('bold');
         }
     },
     'i': {
         icon: '<i>I</i>',
+        stat: function stat() {
+            return queryCommendState('italic');
+        },
         exec: function exec() {
             return _exec('italic');
         }
     },
     'u': {
         icon: '<u>U</u>',
+        stat: function stat() {
+            return queryCommendState('underline');
+        },
         exec: function exec() {
             return _exec('underline');
         }
     },
     's': {
         icon: '<s>S</s>',
+        stat: function stat() {
+            return queryCommendState('strikeThrough');
+        },
         exec: function exec() {
             return _exec('strikeThrough');
         }
@@ -62,6 +78,11 @@ var init = function init(arg) {
     if ((typeof arg === 'undefined' ? 'undefined' : _typeof(arg)) !== 'object') return;
     if (_typeof(arg.ele) !== 'object') return;
 
+    // 构建可编辑区
+    var content = document.createElement('div');
+    content.classList.add(defaultClasses.content);
+    content.contentEditable = true;
+
     // 构建工具栏
     var tools = document.createElement('div');
     tools.classList.add(defaultClasses.actionbar);
@@ -70,21 +91,27 @@ var init = function init(arg) {
     }
 
     arg.tool.forEach(function (type) {
-        var actionType = actionbar[type];
-        if (actionType) {
+        var actionbarType = actionbar[type];
+        if (actionbarType) {
             var button = document.createElement('button');
             button.classList.add(defaultClasses.button);
-            button.innerHTML = actionType.icon;
+            button.innerHTML = actionbarType.icon;
             button.onclick = function () {
-                return actionType.exec() && content.focus();
+                return actionbarType.exec() && content.focus();
             };
             tools.appendChild(button);
+
+            // 记录工具按钮选择状态
+            if (actionbarType.stat) {
+                var hander = function hander() {
+                    return button.classList[actionbarType.stat() ? 'add' : 'remove'](defaultClasses.selected);
+                };
+                content.addEventListener('keyup', hander);
+                content.addEventListener('mouseup', hander);
+                button.addEventListener('click', hander);
+            }
         }
     });
-    // 构建可编辑区
-    var content = document.createElement('div');
-    content.classList.add(defaultClasses.content);
-    content.contentEditable = true;
 
     // 合并工具栏和可编辑区
     arg.ele.classList.add('oct');
