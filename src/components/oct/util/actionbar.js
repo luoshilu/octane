@@ -1,16 +1,6 @@
-
 const queryCommendState = command => document.queryCommandState(command)
-
-const defaultClasses = {
-  actionbar: 'oct-actionbar',
-  button: 'oct-button',
-  content: 'oct-content',
-  selected: 'oct-button-selected',
-}
-
-export const exec = (command, value = null) => document.execCommand(command, false, value)
-
-const actionbar = {
+import { exec } from './exec.js'
+export const actionbar = {
   'bold': {
     icon: `<b>B</b>`,
     title: 'bold',
@@ -95,48 +85,3 @@ const actionbar = {
     },
   },
 }
-
-export const init = arg => {
-  // 检查配置
-  if (typeof arg !== 'object') return
-  if (typeof arg.ele !== 'object') return
-
-  // 构建可编辑区
-  const content = document.createElement('div')
-  content.classList.add(defaultClasses.content)
-  content.contentEditable = true
-
-  // 构建工具栏
-  const tools = document.createElement('div')
-  tools.classList.add(defaultClasses.actionbar)
-  if (!arg.tool || Object.prototype.toString.call(arg.tool).slice(-6, -1) !== 'Array') {
-    arg.tool = Object.keys(actionbar)
-  }
-
-  arg.tool.forEach(type => {
-    const actionbarType = actionbar[type]
-    if (actionbarType) {
-      const button = document.createElement('button')
-      button.classList.add(defaultClasses.button)
-      button.innerHTML = actionbarType.icon
-      button.title = actionbarType.title
-      button.onclick = () => actionbarType.exec() && content.focus()
-      tools.appendChild(button)
-
-      // 记录工具按钮选择状态
-      if (actionbarType.stat) {
-        const hander = () => button.classList[actionbarType.stat() ? 'add' : 'remove'](defaultClasses.selected)
-        content.addEventListener('keyup', hander)
-        content.addEventListener('mouseup', hander)
-        button.addEventListener('click', hander)
-      }
-    }
-  })
-
-  // 合并工具栏和可编辑区
-  arg.ele.classList.add('oct')
-  arg.ele.appendChild(tools)
-  arg.ele.appendChild(content)
-}
-
-export default { exec, init }

@@ -1,26 +1,26 @@
-## octane
+<div align="center">
+  <a href="https://github.com/luoshilu/octane">
+    <img width="592" heigth="242" src="https://asyncc.com/uploads/2019/02/6782ba6bd28870640645eb3420523614.png">
+  </a>
 
-octane.js是一款简洁，轻量，零依赖的富文本编辑器，可用于pc端和h5移动端。
+  <h2>octane editor - vue</h2>
 
-> octane的由来
-> octane 中文名为 辛烷，引用于 Rocket League 游戏里一辆车的简称。
+  <div>
+    <a href="http://badge.fury.io/js/octane-editor">
+      <img src="https://img.shields.io/npm/v/octane-editor.svg?style=flat-square" alt="NPM version" />
+    </a>
+  </div>
+  <p>基于vue的octane，是一款简洁，轻量，零依赖的富文本编辑器。</p>
+</div>
+
+---
+
+> octane的由来: octane译为辛烷，引用于 Rocket League 游戏里一辆车的简称。
+
+- [点击查看示例](https://asyncc.com/static/home/demo_html/html_preview.html?https://github.com/luoshilu/octane/blob/master/index.html)
+
 
 ![demo](https://asyncc.com/uploads/2019/02/a92144d61b53ad6e5041c2f4f81501e4.gif)
 
-[演示地址](https://asyncc.com/static/home/demo_html/html_preview.html?https://github.com/luoshilu/octane/blob/master/index.html)
-
 ## use
-
-```
-<link src="./dist/oct.min.css">
-<script src="./dist/oct.min.js"></script>
-
-<div id="editor"></div>
-<script>
-oct.init({
-  ele: document.getElementById('editor')
-});
-</script>
-```
-
 ---
