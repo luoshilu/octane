@@ -24,3 +24,9 @@
 
 ## use
 ---
+```
+<octEditor v-model="html"></octEditor>
+```
+```
+<octEditor :tools="['bold', 'italic', 'underline']" v-model="html"></octEditor>
+```
