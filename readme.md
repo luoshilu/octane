@@ -24,6 +24,10 @@
 
 ## use
 ---
+
+```
+npm install oct-editor
+```
 ```
 <octEditor v-model="html"></octEditor>
 ```
